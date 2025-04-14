@@ -1,29 +1,51 @@
 import React from "react";
 import "../css/app.css";
-import { Container,Stack,Box, Button,Typography } from "@mui/material";
-import { RippleBadge } from "./MaterialTheme/MaterialTheme/styled";
+import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Users } from "./screens/Users";
+import { About } from "./screens/About";
 
-
-
-function App() {
+export default function App() {
   return (
-    <Container sx={{background: "orange"}}>
-  <Stack flexDirection={"column"}>
-    <Box sx={{my: 4}}>
-      <Typography variant="h4"component={"h4"}>
-        Create React App on Typescript  with Redux
-      </Typography>
-    </Box>
-    <RippleBadge badgeContent={4}>
-      <Button variant="contained"> Contained</Button>
-    </RippleBadge>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/users">Users</Link>
+            </li>
+          </ul>
+        </nav>
 
-  </Stack>
-  </Container>
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+          <Route path="/about">
+          <About />
+          </Route>
+          <Route path="/users">
+            <Users />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
-export default App;
+function Home() {
+  return <h2>Home</h2>;
+}
+
+
+
 
 
 
