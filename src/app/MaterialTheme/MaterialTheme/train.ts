@@ -6,3 +6,6 @@ function calculate(expression: string): number {
   }
   
   console.log(calculate("1+3"));
+
+
+  export {}
