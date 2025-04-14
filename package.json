@@ -29,7 +29,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "train": "node --loader ts-node/esm src/app/MaterialTheme/MaterialTheme/train.ts"
+      "train": "ts-node src/app/MaterialTheme/train.ts"
   },
   "eslintConfig": {
     "extends": [
