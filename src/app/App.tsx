@@ -1,8 +1,10 @@
 import React from "react";
 import "../css/app.css";
 import { Link, BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Users } from "./screens/Users";
-import { About } from "./screens/About";
+import { HomePage} from "./screens/homePage";
+import { ProductsPage } from './screens/productsPage/index';
+import { OrdersPage } from './screens/ordersPage/index';
+import { UserPage } from './screens/userPage/index';
 
 export default function App() {
   return (
@@ -11,13 +13,16 @@ export default function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">HomePage</Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to="/products">ProductsPage</Link>
             </li>
             <li>
-              <Link to="/users">Users</Link>
+              <Link to="/orders">OrdersPage</Link>
+            </li>
+            <li>
+              <Link to="/member-page">UserPage</Link>
             </li>
           </ul>
         </nav>
@@ -25,23 +30,22 @@ export default function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/about">
-          <About />
+          <Route path="/products">
+          <ProductsPage />
           </Route>
-          <Route path="/users">
-            <Users />
+          <Route path="/orders">
+            <OrdersPage />
+            <Route path="/member-page">
+          <UserPage />
+          </Route>
           </Route>
           <Route path="/">
-            <Home />
+            <HomePage />
           </Route>
         </Switch>
       </div>
     </Router>
   );
-}
-
-function Home() {
-  return <h2>Home</h2>;
 }
 
 

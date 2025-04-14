@@ -7,7 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import CssBaseline  from "@mui/material/CssBaseline";
 import "./css/index.css";
 import { ThemeProvider } from "@mui/material/styles";
-import theme from "./app/MaterialTheme/MaterialTheme";
+import theme from "./app/MaterialTheme"; // Adjusted path to match the correct file location
 import { BrowserRouter as Router } from 'react-router-dom';
 
 
