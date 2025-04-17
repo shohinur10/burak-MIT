@@ -8,6 +8,8 @@ import { UserPage } from './screens/userPage/index';
 import { HomeNavbar } from './components/HomeNavbar';
 import { OtherNavbar } from './components/OtherNavbar'
 import { Footer } from "./components/footer";
+import "../css/navbar.css";
+import { HelpPage } from "./screens/helpPage";
 
  function App() {
   const location =useLocation();
@@ -24,6 +26,9 @@ import { Footer } from "./components/footer";
         </Route>
         <Route path="/member-page">
           <UserPage />
+        </Route>
+        <Route path="/help-page">
+          <HelpPage />
         </Route>
         <Route path="/">
           <HomePage />
