@@ -1,15 +1,17 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom";
-import { HomePage} from "./screens/homePage";
-import { ProductsPage } from './screens/productsPage/index';
-import { OrdersPage } from './screens/ordersPage/index';
-import { UserPage } from './screens/userPage/index';
-import { HomeNavbar } from './components/HomeNavbar';
-import { OtherNavbar } from './components/OtherNavbar'
-import { Footer } from "./components/footer";
-import { HelpPage } from "./screens/helpPage";
+import  HomePage from "./screens/homePage";
+import  ProductsPage  from './screens/productsPage/index';
+import  OrdersPage  from './screens/ordersPage/index';
+import  UserPage  from './screens/userPage/index';
+import  HomeNavbar from './components/HomeNavbar';
+import  OtherNavbar from './components/OtherNavbar'
+import  Footer  from "./components/footer";
+import  HelpPage  from "./screens/helpPage";
 import "../css/navbar.css";
 import "../css/app.css";
+import "../css/footer.css";
+
 
 
  function App() {
