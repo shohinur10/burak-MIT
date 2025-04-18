@@ -33,7 +33,7 @@ import "../css/footer.css";
     <Route path="/help-page">
       <HelpPage />
     </Route>
-    <Route exact path="/">  {/* 👈 THIS FIXES THE ISSUE */}
+    <Route  path="/">  {/* 👈 THIS FIXES THE ISSUE */}
       <HomePage />
     </Route>
   </Switch>
