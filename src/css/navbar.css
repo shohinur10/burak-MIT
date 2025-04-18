@@ -8,7 +8,7 @@
 .home-navbar a {
     text-decoration: none;
 }
-.home-navbar .hover-liner a {
+.home-navbar .hover-line a {
     color:#f8f8ff;
     z-index: 100;
 }
