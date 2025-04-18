@@ -1,5 +1,4 @@
 import React from "react";
-import "../css/app.css";
 import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom";
 import { HomePage} from "./screens/homePage";
 import { ProductsPage } from './screens/productsPage/index';
@@ -8,32 +7,34 @@ import { UserPage } from './screens/userPage/index';
 import { HomeNavbar } from './components/HomeNavbar';
 import { OtherNavbar } from './components/OtherNavbar'
 import { Footer } from "./components/footer";
-import "../css/navbar.css";
 import { HelpPage } from "./screens/helpPage";
+import "../css/navbar.css";
+import "../css/app.css";
+
 
  function App() {
   const location =useLocation();
   return (
     <>
     {location.pathname === "/" ?  <HomeNavbar/> : <OtherNavbar/>}
-  <Router>
-      <Switch>
-        <Route path="/products">
-          <ProductsPage />
-        </Route>
-        <Route path="/orders">
-          <OrdersPage />
-        </Route>
-        <Route path="/member-page">
-          <UserPage />
-        </Route>
-        <Route path="/help-page">
-          <HelpPage />
-        </Route>
-        <Route path="/">
-          <HomePage />
-        </Route>
-      </Switch>
+    <Router>
+  <Switch>
+    <Route path="/products">
+      <ProductsPage />
+    </Route>
+    <Route path="/orders">
+      <OrdersPage />
+    </Route>
+    <Route path="/member-page">
+      <UserPage />
+    </Route>
+    <Route path="/help-page">
+      <HelpPage />
+    </Route>
+    <Route exact path="/">  {/* 👈 THIS FIXES THE ISSUE */}
+      <HomePage />
+    </Route>
+  </Switch>
   </Router>
   <Footer />
   </>
