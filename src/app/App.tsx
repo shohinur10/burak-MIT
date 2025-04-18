@@ -4,8 +4,8 @@ import  HomePage from "./screens/homePage";
 import  ProductsPage  from './screens/productsPage/index';
 import  OrdersPage  from './screens/ordersPage/index';
 import  UserPage  from './screens/userPage/index';
-import  HomeNavbar from './components/HomeNavbar';
-import  OtherNavbar from './components/OtherNavbar'
+import  HomeNavbar from './components/headers/HomeNavbar';
+import  OtherNavbar from './components/headers/OtherNavbar'
 import  Footer  from "./components/footer";
 import  HelpPage  from "./screens/helpPage";
 import "../css/navbar.css";
