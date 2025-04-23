@@ -19,29 +19,31 @@ import "../css/footer.css";
   return (
     <>
     {location.pathname === "/" ?  <HomeNavbar/> : <OtherNavbar/>}
-    <Router>
-  <Switch>
-    <Route path="/products">
-      <ProductsPage />
-    </Route>
-    <Route path="/orders">
-      <OrdersPage />
-    </Route>
-    <Route path="/member-page">
-      <UserPage />
-    </Route>
-    <Route path="/help-page">
-      <HelpPage />
-    </Route>
-    <Route  path="/">  {/* 👈 THIS FIXES THE ISSUE */}
-      <HomePage />
-    </Route>
-  </Switch>
-  </Router>
-  <Footer />
-  </>
-);
+    <Switch>
+        {/** checks the path and directs us to the related page */}
+        <Route path="/products">
+          <ProductsPage />
+        </Route>
+        <Route path="/orders">
+          <OrdersPage />
+        </Route>
+        <Route path="/member-page">
+          <UserPage />
+        </Route>
+        <Route path="/help">
+          <HelpPage />
+        </Route>
+        <Route path="/">
+          {" "}
+          {/** route / must be put at the end to provide correct switching */}
+          <HomePage />
+        </Route>
+      </Switch>
+      <Footer />
+    </>
+  );
 }
+
 export default App;
 
 
