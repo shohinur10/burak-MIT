@@ -123,19 +123,20 @@
     margin-top: 73px;
 }
 
-.home-navbar .navbar-container .detail .signup .sign-button{
-    width:210px;
-    height:60px;
-    border-radius:4px;
-    background:#1976d2;
+.home-navbar .navbar-container .detail .signup .sign-button {
+    width: 210px;
+    height: 60px;
+    border-radius: 4px;
+    background: #1976d2 !important; /* Forcing blue color */
     text-align: center;
-    font-family: Poppins;
+    font-family: "Poppins";
     font-size: 17px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     color: #f8f8ff;
 }
+
 
 .home-navbar .navbar-container .logo-frame{
     margin-top: 43px;
