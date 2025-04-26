@@ -37,14 +37,14 @@ export default function ChosenProduct() {
         </Stack>
         <Stack className={"chosen-product-info"}>
           <Box className={"info-box"}>
-            <strong className={"product-name"}>Kebab</strong>
+            <strong className={"product-name"}>Lavash</strong>
             <span className={"resto-name"}>Burak</span>
             <Box className={"rating-box"}>
               <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
               <div className={"evaluation-box"}>
                 <div className={"product-view"}>
                   <RemoveRedEyeIcon sx={{ mr: "10px" }} />
-                  <span>20</span>
+                  <span>30</span>
                 </div>
               </div>
             </Box>
@@ -52,7 +52,7 @@ export default function ChosenProduct() {
             <Divider height="1" width="100%" bg="#000000" />
             <div className={"product-price"}>
               <span>Price:</span>
-              <span>$12</span>
+              <span>$233</span>
             </div>
             <div className={"button-box"}>
               <Button variant="contained">Add To Basket</Button>

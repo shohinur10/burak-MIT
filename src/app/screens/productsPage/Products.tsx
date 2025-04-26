@@ -94,7 +94,7 @@ const products = [
                             />
                           </Button>
                           <Button className="view-btn" sx={{ right: "36px" }}>
-                            <Badge badgeContent={20} color="secondary">
+                            <Badge badgeContent={24} color="secondary">
                               <RemoveRedEyeIcon sx={{ color: "gray" }} />
                             </Badge>
                           </Button>
