@@ -10,8 +10,8 @@ export interface AppRootState {
 }
 /** homepage */
 export interface HomePageState {
-    PopularDishes:Product[];
-    NewDishes:Product[];
+    popularDishes:Product[];
+    newDishes:Product[];
     topUsers:Member[];
 }
 
