@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Box, Button, Container, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
 import React, { useState,useEffect } from "react";
 
 export  default function HomeNavbar (){
-    const authMember = true;
+    const authMember = null;
     const  [count,setCount] = useState<number>(0);
     const [value,setvalue] = useState<boolean>(true);
 
