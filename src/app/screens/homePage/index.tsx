@@ -20,10 +20,12 @@ import { ProductCollection } from "../../lib/enums/product.enum";
 
 const actionDispatch = (dispatch: Dispatch) => ({
     setPopularDishes: (data: Product[]) => dispatch(setPopularDishes(data)),
+    setNewDishes: (data: Product[]) => dispatch(setPopularDishes(data)),
 });
 
  export  default function HomePage() {
-        const {setPopularDishes} = actionDispatch(useDispatch());
+        const {setPopularDishes,setNewDishes} = actionDispatch(useDispatch());
+        
         //selector : Store => data
 
         useEffect(() => {
@@ -42,6 +44,18 @@ const actionDispatch = (dispatch: Dispatch) => ({
                 .then((data) =>{
                         console.log("data Passed  here:", data);
                         setPopularDishes(data);
+                })
+                .catch((err) => console.log(err));
+                product.getProducts({
+                        page: 1,
+                        limit: 4,
+                        order: "createdAt",
+                        productCollection: ProductCollection.DISH,
+                        search: ""
+                })
+                .then((data) =>{
+                        console.log("data Passed  here:", data);
+                        setNewDishes(data);
                 })
                 .catch((err) => console.log(err));
         }, []);

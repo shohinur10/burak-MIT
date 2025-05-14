@@ -38,12 +38,12 @@ export default function PopularDishes() {
           <Box className="category-title">Popular Dishes</Box>
           <Stack className="cards-frame">
             {popularDishes.length !==0 ? (
-            popularDishes.map((ele: Product) => {
-              const imagePath = ele.productImages && ele.productImages.length > 0
-                ? `${serverApi}/${ele.productImages[0]}`
+            popularDishes.map((product:Product) => {
+              const imagePath = product.productImages && product.productImages.length > 0
+                ? `${serverApi}/${product.productImages[0]}`
                 : "/default-image.jpg"; // Fallback image if none is available
                 return (
-              <CssVarsProvider key={ele._id}>
+              <CssVarsProvider key={product._id}>
                 <Card className={"card"}>
                   <CardCover>
                     <img src={imagePath} alt="" />
@@ -60,7 +60,7 @@ export default function PopularDishes() {
                             textColor="#fff"
                             mb={1}
                           >
-                            {ele.productName}
+                            {product.productName}
                           </Typography>
                           <Typography
                             sx={{
@@ -70,7 +70,7 @@ export default function PopularDishes() {
                               display: "flex",
                             }}
                           >
-                            {ele.productViews}
+                            {product.productViews}
                             <VisibilityIcon
                               sx={{ fontSize: 25, marginLeft: "5px" }}
                             />
@@ -91,7 +91,7 @@ export default function PopularDishes() {
                           startDecorator={<DescriptionOutlinedIcon />}
                           textColor="neutral.300"
                         >
-                          ${ele.productDesc}
+                          ${product.productDesc}
                         </Typography>
                       </CardOverflow>
                     </Card>
