@@ -1,74 +1,67 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect } from "react";
 import Statistics from "./Statistics";
 import PopularDishes from "./PopularDishes";
 import NewDishes from "./NewDishes";
-import ActiveUsers from "./ActiveUsers";
 import Advertisement from "./Advertisement";
+import ActiveUsers from "./ActiveUsers";
 import Events from "./Events";
-import "../../../css/home.css";
-
 import { useDispatch } from "react-redux";
-import { Dispatch} from "@reduxjs/toolkit";
-import { setPopularDishes} from "./slice";
-import { Product } from '../../lib/types/product';
+import { setNewDishes, setPopularDishes, setTopUsers } from "./slice";
+import { Product } from "../../lib/types/product";
 import ProductService from "../../services/ProductService";
 import { ProductCollection } from "../../lib/enums/product.enum";
+import MemberService from "../../services/MemberService";
+import { Member } from "../../lib/types/member";
+import { AppDispatch } from "../../store"; // ✅ ensure this import
+import "../../../css/home.css";
 
-/**Redux slice & selector */
+export default function HomePage() {
+  const dispatch = useDispatch<AppDispatch>();
 
-const actionDispatch = (dispatch: Dispatch) => ({
-    setPopularDishes: (data: Product[]) => dispatch(setPopularDishes(data)),
-    setNewDishes: (data: Product[]) => dispatch(setPopularDishes(data)),
-});
+  useEffect(() => {
+    const product = new ProductService();
 
- export  default function HomePage() {
-        const {setPopularDishes,setNewDishes} = actionDispatch(useDispatch());
-        
-        //selector : Store => data
+    // 🔥 Popular Dishes
+    product
+      .getProducts({
+        page: 1,
+        limit: 4,
+        order: "productViews", // ✅ Use correct value your API expects
+        productCollection: ProductCollection.DISH,
+        search: "",
+      })
+      .then((data) => dispatch(setPopularDishes(data)))
+      .catch((err) => console.log("Popular dishes error:", err));
 
-        useEffect(() => {
-                //Backend server data request => data
-                //slice : data => Store 
-                //Backend server data  fetch => Data
-            
-                const product = new ProductService();
-                product.getProducts({
-                        page: 1,
-                        limit: 4,
-                        order: "productViews",
-                        productCollection: ProductCollection.DISH,
-                        search: ""
-                })
-                .then((data) =>{
-                        console.log("data Passed  here:", data);
-                        setPopularDishes(data);
-                })
-                .catch((err) => console.log(err));
-                product.getProducts({
-                        page: 1,
-                        limit: 4,
-                        order: "createdAt",
-                        productCollection: ProductCollection.DISH,
-                        search: ""
-                })
-                .then((data) =>{
-                        console.log("data Passed  here:", data);
-                        setNewDishes(data);
-                })
-                .catch((err) => console.log(err));
-        }, []);
+    // 🔥 New Dishes
+    product
+      .getProducts({
+        page: 1,
+        limit: 4,
+        order: "createdAt", // ✅ Adjust based on backend needs
+        productCollection: ProductCollection.DISH,
+        search: "",
+      })
+      .then((data) => dispatch(setNewDishes(data)))
+      .catch((err) => console.log("New dishes error:", err));
 
-    return ( 
-    <div className={"homepage"}>
-            <Statistics/>
-            <PopularDishes/>
-            <NewDishes/>
-            <Advertisement/>
-            <ActiveUsers/>
-            <Events/>
+    // 🔥 Top Users
+    const member = new MemberService();
+    member
+      .getTopUsers()
+      .then((data) => dispatch(setTopUsers(data)))
+      .catch((err) => console.log("Top users error:", err));
+  }, [dispatch]);
 
+  return (
+    <div className="homepage">
+      <Statistics />
+      <PopularDishes />
+      <NewDishes />
+      <Advertisement />
+      <ActiveUsers />
+      <Events />
     </div>
-    );
-  }
+  );
+}
+

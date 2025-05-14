@@ -1,6 +1,7 @@
 import { ProductCollection, ProductSize, ProductStatus } from "../enums/product.enum";
 
 export interface Product{
+    [x: string]: string | number | Date | string[] | undefined;
     _id: string;
     productStatus: ProductStatus;
     productCollection: ProductCollection;
@@ -20,6 +21,6 @@ export interface ProductInquiry{
     order:string;
     page: number;
     limit:number;
-    productCollection: ProductCollection;
-    search: string;
+    productCollection?: ProductCollection;
+    search?: string;
 }
