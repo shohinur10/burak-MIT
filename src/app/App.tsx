@@ -11,6 +11,7 @@ import  HelpPage  from "./screens/helpPage";
 import "../css/navbar.css";
 import "../css/app.css";
 import "../css/footer.css";
+import { CartItem } from "./lib/types/search";
 
 
 
@@ -22,7 +23,9 @@ import "../css/footer.css";
     <Switch>
         {/** checks the path and directs us to the related page */}
         <Route path="/products">
-          <ProductsPage />
+          <ProductsPage onAdd={function (item: CartItem): void {
+            throw new Error("Function not implemented.");
+          } } />
         </Route>
         <Route path="/orders">
           <OrdersPage />
