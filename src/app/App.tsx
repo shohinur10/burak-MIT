@@ -1,5 +1,6 @@
-import React,{useState}from "react";
-import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom";
+import React from "react";
+import { Switch, Route, useLocation } from "react-router-dom";
+import{Box, Button, Container, Stack,Typography} from "@mui/material";
 import  HomePage from "./screens/homePage";
 import  ProductsPage  from './screens/productsPage/index';
 import  OrdersPage  from './screens/ordersPage/index';
@@ -11,42 +12,35 @@ import  HelpPage  from "./screens/helpPage";
 import "../css/navbar.css";
 import "../css/app.css";
 import "../css/footer.css";
-import { CartItem } from "./lib/types/search";
+import  {CartItem }from "./lib/types/search";
+import useBasket from "./components/hooks/useBasket";
+import { useState } from "react";
 
 
 
  function App() {
   const location =useLocation();
+  const {cartItems,onAdd,onRemove,onDelete,onDeleteAll} =useBasket();
 
-  const cartJson:string | null = localStorage.getItem("cartData");
-  const currentCart = cartJson ? JSON.parse(cartJson) : [];
-  const [ cartItems, setCartItem] =useState<CartItem[]>(currentCart);
-
-
-  /** Handlers */
-  const onAdd =(input: CartItem) => {
-    const exist:any = cartItems.find(
-      (item: CartItem) => item._id === input._id
-    );
-    if (exist) {
-      const cartUpdate = cartItems.map((item: CartItem) =>
-        item._id === exist._id 
-      ? { ...exist, quantity: exist.quantity + 1 } 
-      : item
-      );
-      setCartItem(cartUpdate);
-      localStorage.setItem("cartData", JSON.stringify(cartUpdate)); //  biz localstorage cartDate deb nomlangan qiymatimiz 
-    } else {
-      const cartUpdate = [...cartItems, { ...input}];
-      setCartItem(cartUpdate);
-    localStorage.setItem("cartData", JSON.stringify(cartItems));
-  }
-  };
-    
   return (
     <>
-    {location.pathname === "/" ?  <HomeNavbar cartItems={cartItems}/> : <OtherNavbar
-    cartItems={cartItems}/>}
+    {location.pathname === "/" ? (
+    <HomeNavbar 
+    cartItems={cartItems}
+    onAdd = {onAdd}
+    onRemove={onRemove}
+    onDelete={onDelete}
+    onDeleteAll={onDeleteAll}
+      /> 
+
+    ) : (
+    <OtherNavbar
+     cartItems={cartItems}
+     onAdd={onAdd}
+    onRemove={onRemove}
+    onDelete={onDelete}
+    onDeleteAll={onDeleteAll}/>
+    )}
     <Switch>
         {/** checks the path and directs us to the related page */}
         <Route path="/products">
