@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState}from "react";
 import { BrowserRouter as Router, Switch, Route, useLocation } from "react-router-dom";
 import  HomePage from "./screens/homePage";
 import  ProductsPage  from './screens/productsPage/index';
@@ -17,15 +17,40 @@ import { CartItem } from "./lib/types/search";
 
  function App() {
   const location =useLocation();
+
+  const cartJson:string | null = localStorage.getItem("cartData");
+  const currentCart = cartJson ? JSON.parse(cartJson) : [];
+  const [ cartItems, setCartItem] =useState<CartItem[]>(currentCart);
+
+
+  /** Handlers */
+  const onAdd =(input: CartItem) => {
+    const exist:any = cartItems.find(
+      (item: CartItem) => item._id === input._id
+    );
+    if (exist) {
+      const cartUpdate = cartItems.map((item: CartItem) =>
+        item._id === exist._id 
+      ? { ...exist, quantity: exist.quantity + 1 } 
+      : item
+      );
+      setCartItem(cartUpdate);
+      localStorage.setItem("cartData", JSON.stringify(cartUpdate)); //  biz localstorage cartDate deb nomlangan qiymatimiz 
+    } else {
+      const cartUpdate = [...cartItems, { ...input}];
+      setCartItem(cartUpdate);
+    localStorage.setItem("cartData", JSON.stringify(cartItems));
+  }
+  };
+    
   return (
     <>
-    {location.pathname === "/" ?  <HomeNavbar/> : <OtherNavbar/>}
+    {location.pathname === "/" ?  <HomeNavbar cartItems={cartItems}/> : <OtherNavbar
+    cartItems={cartItems}/>}
     <Switch>
         {/** checks the path and directs us to the related page */}
         <Route path="/products">
-          <ProductsPage onAdd={function (item: CartItem): void {
-            throw new Error("Function not implemented.");
-          } } />
+          <ProductsPage onAdd= {onAdd}/>
         </Route>
         <Route path="/orders">
           <OrdersPage />
@@ -48,10 +73,5 @@ import { CartItem } from "./lib/types/search";
 }
 
 export default App;
-
-
-
-
-
 
 

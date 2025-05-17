@@ -40,7 +40,7 @@ export default function Products(props: ProductsProps) {
     page: 1,
     limit: 8,
     order: "createdAt",
-    productCollection: ProductCollection.DRINK,
+    productCollection: ProductCollection.DISH,
     search: "",
   });
   const [searchText, setSearchText] = useState<string>("");
@@ -52,14 +52,14 @@ export default function Products(props: ProductsProps) {
       .getProducts(productSearch)
       .then((data) => setProducts(data))
       .catch((err) => console.log(err));
-  }, [productSearch, setProducts]);
+  }, [productSearch]);
 
   useEffect(() => {
     if (searchText === "") {
       productSearch.search = "";
       setProductSearch({ ...productSearch });
     }
-  }, [productSearch, searchText]);
+  }, [searchText]);
 
   /** HANDLERS **/
 
@@ -361,5 +361,3 @@ export default function Products(props: ProductsProps) {
     </div>
   );
 }
-
-    
