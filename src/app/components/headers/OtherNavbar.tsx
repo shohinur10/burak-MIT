@@ -2,6 +2,7 @@ import { Box, Button, Container, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
 import { CartItem } from "../../lib/types/search";
+import { useGlobals } from "../hooks/useGlobals";
 
 
 interface OtherNavbarProps {
@@ -10,11 +11,13 @@ interface OtherNavbarProps {
     onRemove: (item: CartItem) => void;
     onDelete: (item: CartItem) => void;
     onDeleteAll: () => void;
+    setSignupOpen: (value: boolean) => void;
+    setLoginOpen: (value: boolean) => void;
 }
 
 export default function OtherNavbar(props: OtherNavbarProps) {
-    const {cartItems, onAdd, onDelete, onDeleteAll,onRemove} = props;
-    const authMember = null;
+    const {cartItems, onAdd, onDelete, onDeleteAll,onRemove,setLoginOpen,setSignupOpen} = props;
+    const {authMember} = useGlobals();
     return (
      <div className="other-navbar"> 
         <Container  className="navbar-container" >
@@ -66,6 +69,7 @@ export default function OtherNavbar(props: OtherNavbarProps) {
         <Button 
             variant="contained" 
             className="login-button"
+            onClick ={() => setLoginOpen(true)}
         >
             Login
         </Button>

@@ -38,6 +38,8 @@ import "../css/footer.css";
     onRemove={onRemove}
     onDelete={onDelete}
     onDeleteAll={onDeleteAll}
+    setSignupOpen={setSignupOpen}
+    setLoginOpen={setLoginOpen}
       /> 
 
     ) : (
@@ -46,7 +48,10 @@ import "../css/footer.css";
      onAdd={onAdd}
     onRemove={onRemove}
     onDelete={onDelete}
-    onDeleteAll={onDeleteAll}/>
+    onDeleteAll={onDeleteAll}
+    setSignupOpen={setSignupOpen}
+    setLoginOpen={setLoginOpen}
+    />
     )}
     <Switch>
         {/** checks the path and directs us to the related page */}

@@ -9,6 +9,7 @@ import "./css/index.css";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./app/MaterialTheme"; // Adjusted path to match the correct file location
 import { BrowserRouter as Router } from 'react-router-dom';
+import ContextProvider from "./app/context/ContextProvider";
 
 
 const container = document.getElementById('root')!;
@@ -17,12 +18,14 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ThemeProvider theme ={theme}>
+      <ContextProvider>
+       <ThemeProvider theme ={theme}>  //children prop is used to render the child components
         <CssBaseline />
         <Router>
         <App />  
         </Router>
-      </ThemeProvider>
+        </ThemeProvider>
+      </ContextProvider>
      </Provider>,
   </React.StrictMode>
 );

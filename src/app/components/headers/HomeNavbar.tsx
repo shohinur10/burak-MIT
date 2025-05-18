@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
 import React, { useState,useEffect } from "react";
 import { CartItem } from "../../lib/types/search";
+import { useGlobals } from "../hooks/useGlobals";
 
 
 interface HomeNavbarProps {
@@ -12,23 +13,13 @@ interface HomeNavbarProps {
         onRemove: (item: CartItem) => void;
         onDelete: (item: CartItem) => void;
         onDeleteAll: () => void;
+        setSignupOpen: (value: boolean) => void;
+        setLoginOpen: (value: boolean) => void;
 }
 export  default function HomeNavbar (props: HomeNavbarProps) {
-    const {cartItems,onDelete,onAdd,onDeleteAll,onRemove} = props;
-    const authMember = null;
-    const  [count,setCount] = useState<number>(0);
-    const [value,setvalue] = useState<boolean>(true);
-
-  useEffect(() => {
-    console.log("componentDidMount");// Data fetching
-    setCount(count + 1);
-  }, [value]);   // value is the dependency, when it changes, useEffect will be called
-
-
-    /** Handler  */
-    const buttonHandler = () => {
-        setCount(count + 1);
-    };
+    const {cartItems,onDelete,onAdd,onDeleteAll,onRemove,setLoginOpen,setSignupOpen} = props;
+    const {authMember} = useGlobals();
+   
     return (
     <div className= "home-navbar" >
         <Container  className="navbar-container" >
@@ -80,6 +71,7 @@ export  default function HomeNavbar (props: HomeNavbarProps) {
         <Button 
             variant="contained" 
             className="login-button"
+            onClick={() => setLoginOpen(true)}
         >
             Login
         </Button>
@@ -105,14 +97,15 @@ export  default function HomeNavbar (props: HomeNavbarProps) {
                 The Choice, not just a choice
             </Box>
             <Box className ={"service-txt"}>
-               {count}hours service
+               24 hours service
             </Box>
 
             <Box className ={"signup"}>
                 {!authMember ?(
                     <Button variant={"contained"} 
                     className={"signup-button"}
-                        onClick={buttonHandler}>
+                        onClick={() =>setSignupOpen(true)}
+                    >
                         SIGN UP 
                     </Button>
                 ) : null } 
