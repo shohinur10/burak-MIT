@@ -9,18 +9,25 @@ import  HomeNavbar from './components/headers/HomeNavbar';
 import  OtherNavbar from './components/headers/OtherNavbar'
 import  Footer  from "./components/footer";
 import  HelpPage  from "./screens/helpPage";
-import "../css/navbar.css";
-import "../css/app.css";
-import "../css/footer.css";
 import  {CartItem }from "./lib/types/search";
 import useBasket from "./components/hooks/useBasket";
 import { useState } from "react";
+import AuthenticationModal from "./components/auth";
+import "../css/navbar.css";
+import "../css/app.css";
+import "../css/footer.css";
 
 
 
  function App() {
   const location =useLocation();
   const {cartItems,onAdd,onRemove,onDelete,onDeleteAll} =useBasket();
+  const[signupOpen,setSignupOpen] = useState<boolean>(true);
+  const[loginOpen,setLoginOpen] = useState<boolean>(false);  // bu yerda page auth mantigi qurilgan 
+
+  /** HANDLERS **/
+  const handleSignupOpen = () => setSignupOpen(false);
+  const handleSignupClose = () => setSignupOpen(false);
 
   return (
     <>
@@ -62,6 +69,12 @@ import { useState } from "react";
         </Route>
       </Switch>
       <Footer />
+      <AuthenticationModal 
+      signupOpen={signupOpen}
+      loginOpen={loginOpen}
+      handleSignupClose={handleSignupClose}
+      handleLoginClose={handleSignupClose}
+      />
     </>
   );
 }
