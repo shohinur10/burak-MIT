@@ -19,7 +19,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ContextProvider>
-       <ThemeProvider theme ={theme}>  //children prop is used to render the child components
+       <ThemeProvider theme ={theme}> 
         <CssBaseline />
         <Router>
         <App />  
