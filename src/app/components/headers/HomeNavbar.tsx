@@ -1,12 +1,21 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Box, Button, Container, ListItemIcon, Menu, MenuItem, Stack } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import {
+  Box,
+  Button,
+  Container,
+  ListItemIcon,
+  Menu,
+  MenuItem,
+  Stack,
+} from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
-import React, { useState,useEffect } from "react";
 import { CartItem } from "../../lib/types/search";
 import { useGlobals } from "../hooks/useGlobals";
 import { serverApi } from "../../lib/config";
 import { Logout } from "@mui/icons-material";
+
 interface HomeNavbarProps {
   cartItems: CartItem[];
   onAdd: (item: CartItem) => void;
@@ -163,7 +172,7 @@ export default function HomeNavbar(props: HomeNavbarProps) {
             <Box className={"signup"}>
               {!authMember ? (
                 <Button
-                  variant={"contained"}
+                  variant="contained"sx={{ backgroundColor: "rgb(52, 80, 182)" }}
                   className={"signup-button"}
                   onClick={() => setSignupOpen(true)}
                 >

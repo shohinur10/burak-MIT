@@ -8,6 +8,18 @@ import PausedOrders from "./PausedOrders";
 import ProcessOrders from "./ProcessOrders";
 import FinishedOrders from "./FinishedOrders";
 import "../../../css/order.css";
+import { setFinishedOrders, setPausedOrders } from "./slice";
+import { Dispatch } from "@reduxjs/toolkit";
+import { Order } from "../../lib/types/order";
+
+
+
+/**Redux Slice & Selector */
+const actionDispatch = (dispatch:Dispatch) =>({
+  setPausedOrders:(data:Order[])=>dispatch(setPausedOrders(data)),
+  setProcessOrder:(data:Order[])=>dispatch(ProcessOrders(data)),
+  setFinishedOrders:(data:Order[])=>dispatch( setFinishedOrders(data)),
+});
 
 
 export default function OrdersPage() {

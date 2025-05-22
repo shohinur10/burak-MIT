@@ -119,23 +119,20 @@
     color: #d4d5d5;
 }
 
-.home-navbar .navbar-container .detail .signup {
-    margin-top: 73px;
-}
+button.signup {
+    background-color: #007bff; /* Blue */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button.signup:hover {
+    background-color: #0056b3;
+  }
+  
 
-.home-navbar .navbar-container .detail .signup .sign-button {
-    width: 210px;
-    height: 60px;
-    border-radius: 4px;
-    background: #1976d2 !important; /* Forcing blue color */
-    text-align: center;
-    font-family: "Poppins";
-    font-size: 17px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    color: #f8f8ff;
-}
 
 
 .home-navbar .navbar-container .logo-frame{
@@ -190,12 +187,15 @@
     background: #3777CC;
      color: #f8f8ff
 }
-
-.other-navbar.navbar-container .menu .user-avatar{
+.other-navbar .navbar-container .menu .user-avatar {
     width: 50px;
     height: 50px;
     border-radius: 24px;
+    object-fit: cover; /* To ensure the image fits nicely inside */
+    display: block;
 }
+
+
 .other-navbar a {
     text-decoration: none;
 }
