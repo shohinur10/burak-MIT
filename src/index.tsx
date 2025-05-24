@@ -26,7 +26,7 @@ root.render(
         </Router>
         </ThemeProvider>
       </ContextProvider>
-     </Provider>,
+     </Provider>
   </React.StrictMode>
 );
 

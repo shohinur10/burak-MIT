@@ -22,7 +22,7 @@ import { JSX } from "react/jsx-runtime";
 
 /** REDUX SLICE & SELECTOR */
 const actionDispatch = (dispatch: Dispatch) => ({
-  setPausedOrders: (data: Order[]) => dispatch(setPausedOrders(data)),
+  setPausedOrders: (data: Order[]) => dispatch( setPausedOrders(data)),
   setProcessOrders: (data: Order[]) => dispatch(setProcessOrders(data)),
   setFinishedOrders: (data: Order[]) => dispatch(setFinishedOrders(data)),
 });
@@ -34,7 +34,7 @@ export default function OrdersPage() {
   const history = useHistory();
   const [value, setValue] = useState("1");
   const [orderInquiry, setOrderInquiry] = useState<OrderInquiry>({
-    page: 1,
+    page:1,
     limit: 5,
     orderStatus: OrderStatus.PAUSE,
   });
