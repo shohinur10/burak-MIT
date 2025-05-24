@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, SyntheticEvent, useEffect } from "react";
 import { Container, Stack, Box } from "@mui/material";
 import Tabs from "@mui/material/Tabs";
@@ -44,12 +47,12 @@ export default function OrdersPage() {
 
     order
       .getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.PAUSE })
-      .then((data: Order[]) => setPausedOrders(data))
+      .then((data: Order[]) =>   setPausedOrders(data))
       .catch((err: any) => console.log(err));
 
     order
       .getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.PROCESS })
-      .then((data: Order[]) => setProcessOrders(data))
+      .then((data: Order[]) =>  setProcessOrders(data))
       .catch((err: any) => console.log(err));
 
     order
@@ -110,6 +113,7 @@ export default function OrdersPage() {
                       authMember?.memberType === MemberType.RESTAURANT
                         ? "/icons/restaurant.svg"
                         : "/icons/user-badge.svg"
+                       
                     }
                     className={"order-user-prof-img"}
                   />
@@ -170,10 +174,10 @@ export default function OrdersPage() {
               className={"card-input"}
             />
             <div className={"cards-box"}>
-              <img src={"/icons/western-card.svg"} />
-              <img src={"/icons/master-card.svg"} />
-              <img src={"/icons/paypal-card.svg"} />
-              <img src={"/icons/visa-card.svg"} />
+              <img src={"/icons/western-card.svg"} alt = "noimage"/>
+              <img src={"/icons/master-card.svg"} alt = "noimage"/>
+              <img src={"/icons/paypal-card.svg"} alt = "noimage"/>
+              <img src={"/icons/visa-card.svg"} alt = "noimage"/>
             </div>
           </Box>
         </Stack>

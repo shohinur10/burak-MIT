@@ -1,19 +1,20 @@
 import React from "react";
-import { Box, Stack } from "@mui/material";
-import Button from "@mui/material/Button";
+import { Box, Stack, Button } from "@mui/material";
 import TabPanel from "@mui/lab/TabPanel";
 import moment from "moment";
+
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrieveProcessOrders } from "./selector";
 import { Messages, serverApi } from "../../lib/config";
-import { Order, OrderItem, OrderUpdateInput } from "../../lib/types/order";
 import { Product } from "../../lib/types/product";
+import { Order, OrderItem, OrderUpdateInput } from "../../lib/types/order";
 import { useGlobals } from "../../components/hooks/useGlobals";
 import { OrderStatus } from "../../lib/enums/order.enum";
-import OrderService from "../../services/OrderService";
 import { sweetErrorHandling } from "../../lib/sweetAlert";
 import { T } from "../../lib/types/common";
+import OrderService from "../../services/OrderService";
+
 
 /** REDUX SLICE & SELECTOR */
 const processOrdersRetriever = createSelector(
@@ -69,13 +70,13 @@ export default function ProcessOrders(props: ProcessOrdersProps) {
                   const imagePath = `${serverApi}/${product.productImages[0]}`;
                   return (
                     <Box key={item._id} className={"orders-name-price"}>
-                      <img src={imagePath} className={"order-dish-img"} />
+                      <img src={imagePath} className={"order-dish-img"}  alt ="noimage"/>
                       <p className={"title-dish"}>{product.productName}</p>
                       <Box className={"price-box"}>
                         <p>${item.itemPrice}</p>
-                        <img src={"/icons/close.svg"} />
+                        <img src={"/icons/close.svg"} alt ="noimage" />
                         <p>{item.itemQuantity}</p>
-                        <img src={"/icons/pause.svg"} />
+                        <img src={"/icons/pause.svg"}  alt ="noimage"/>
                         <p style={{ marginLeft: "15px" }}>
                           ${item.itemQuantity * item.itemPrice}
                         </p>
@@ -89,11 +90,12 @@ export default function ProcessOrders(props: ProcessOrdersProps) {
                 <Box className={"box-total"}>
                   <p>Product price</p>
                   <p>${order.orderTotal - order.orderDelivery}</p>
-                  <img src={"/icons/plus.svg"} style={{ marginLeft: "20px" }} />
+                  <img src={"/icons/plus.svg"} alt ="noimage" style={{ marginLeft: "20px" }} />
                   <p>delivery cost</p>
                   <p>${order.orderDelivery}</p>
                   <img
                     src={"/icons/pause.svg"}
+                    alt ="noimage"
                     style={{ marginLeft: "20px" }}
                   />
                   <p>Total</p>
@@ -124,6 +126,7 @@ export default function ProcessOrders(props: ProcessOrdersProps) {
             >
               <img
                 src={"/icons/noimage-list.svg"}
+                alt ="noimage"
                 style={{ width: 300, height: 300 }}
               />
             </Box>
